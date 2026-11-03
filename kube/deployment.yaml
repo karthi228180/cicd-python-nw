@@ -1,0 +1,41 @@
+
+apiVersion: apps/v1
+kind: Deployment
+
+metadata:
+  name: python-flask-app
+
+spec:
+  replicas: 4
+
+  selector:
+    matchLabels:
+      app: python-flask-app
+
+  template:
+    metadata:
+      labels:
+        app: python-flask-app
+
+    spec:
+      containers:
+        - name: flask-app
+          image: karthikcls/python-jenkins-demo:latest
+
+          ports:
+            - containerPort: 5000
+
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: 5000
+            initialDelaySeconds: 5
+            periodSeconds: 10
+
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: 5000
+            initialDelaySeconds: 15
+            periodSeconds: 20
+
