@@ -97,7 +97,7 @@ pipeline {
                     )
                 ]) {
                     sh '''
-                        kubectl apply -f k8s/
+                        kubectl apply -f kube/
 
                         kubectl set image deployment/python-flask-app \
                           flask-app=$DOCKER_USER/python-jenkins-demo:$BUILD_NUMBER
