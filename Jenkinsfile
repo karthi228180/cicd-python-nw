@@ -23,8 +23,8 @@ pipeline {
                 echo 'Installing Python dependencies'
 
                 sh '''
-		    apt-get update
-		    apt-get install -y python3.14-venv
+		   sudo  apt-get update
+		   sudo  apt-get install -y python3.14-venv
 
 
 		    rm -rf .venv
