@@ -23,7 +23,17 @@ pipeline {
                 echo 'Installing Python dependencies'
 
                 sh '''
-                    python3 -m venv .venv
+		    apt-get update
+		    apt-get install -y python3.14-venv
+
+
+		    rm -rf .venv
+		    python3 -m venv .venv
+
+                     . .venv/bin/activate
+                    python -m pip install --upgrade pip
+
+
                     .venv/bin/pip install -r requirements.txt
                 '''
             }
